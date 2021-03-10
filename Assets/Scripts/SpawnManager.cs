@@ -4,25 +4,28 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    public GameObject[] enemies;
-    public GameObject powerUp;
-
+    //public GameObject[] enemies;
+    //public GameObject powerUp;
+    ObjectPooler objectPooler;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        objectPooler = ObjectPooler.Instance;
+        InvokeRepeating("SpawnEnemy", 3.0f, 5.0f);
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        //SpawnEnemy();
     }
 
-    int SpawnEnemy()
+    void SpawnEnemy()
     {
-        return(0);
+        ObjectPooler.Instance.SpawnFromPool("Enemy", transform.position, Quaternion.identity);
+
+
         //Instantiate(enemies[], spawnPos, enemies[].transform.rotation);
     }
 }
